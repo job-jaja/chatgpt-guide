@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT活用ガイド - 3つの力を身につけよう</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .progress-step {
+            width: 60px;
+            height: 8px;
+            border-radius: 4px;
+            background: #ecf0f1;
+        }
+        
+        .progress-step.active {
+            background: linear-gradient(90deg, #ff7eb3, #ff758c);
+        }
+        
+        .stage {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .stage:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stage-1 {
+            border-left: 6px solid #e74c3c;
+        }
+        
+        .stage-2 {
+            border-left: 6px solid #f39c12;
+        }
+        
+        .stage-3 {
+            border-left: 6px solid #27ae60;
+        }
+        
+        .stage-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .stage-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+        
+        .stage-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .stage-subtitle {
+            color: #7f8c8d;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+        
+        .daily-example {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .daily-example h4 {
+            color: #c0392b;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .daily-example h4::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+        
+        .steps {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .step-description {
+            color: #5a6c7d;
+            font-size: 0.95rem;
+        }
+        
+        .training-tip {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #20bf6b;
+        }
+        
+        .training-tip h4 {
+            color: #0abde3;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .training-tip h4::before {
+            content: "🏋️‍♀️";
+            margin-right: 8px;
+        }
+        
+        .why-section {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .why-section h4 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .why-section h4::before {
+            content: "🤔";
+            margin-right: 8px;
+        }
+        
+        .integration-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .integration-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .flow-item {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 150px;
+            margin: 5px;
+        }
+        
+        .arrow {
+            font-size: 1.5rem;
+            color: #ffd93d;
+        }
+        
+        .final-message {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .stage {
+                padding: 20px;
+            }
+            
+            .integration-flow {
+                flex-direction: column;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌱 ChatGPT活用のための3つの力</h1>
+            <p class="subtitle">美容師さんに理想のヘアスタイルを伝えるように、ChatGPTとも上手にコミュニケーションしよう</p>
+            <div class="progress-bar">
+                <div class="progress-step active"></div>
+                <div class="progress-step active"></div>
+                <div class="progress-step active"></div>
+            </div>
+        </div>
+
+        <div class="stage stage-1">
+            <div class="stage-header">
+                <div class="stage-icon">🌟</div>
+                <div>
+                    <div class="stage-title">第1段階：試行錯誤力</div>
+                    <div class="stage-subtitle">新しいアプリを使いこなすように、まずは触ってみよう！</div>
+                </div>
+            </div>
+
+            <div class="why-section">
+                <h4>なぜこの力が必要なの？</h4>
+                <p>InstagramやTikTokも、最初は使い方が分からなかったはず。でも触っているうちに「こうするとこうなる」が分かってきましたよね。ChatGPTも同じです。完璧を求めずに、まずは「失敗してもOK」の気持ちで始めることが大切です。</p>
+            </div>
+
+            <div class="daily-example">
+                <h4>日常の例：新しいカフェでの注文</h4>
+                <p>新しいカフェに入って、メニューを見てもよく分からない。でも「とりあえずカフェラテください」と注文してみる。思っていたのと違ったら、次は「甘めのコーヒーで」と言い直してみる。これが試行錯誤です。</p>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">とにかく触ってみる</div>
+                        <div class="step-description">「失敗したらどうしよう」は考えずに、何でもいいので質問してみる</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">「何か違うな」と感じる</div>
+                        <div class="step-description">期待していた答えと違っても、それは貴重な学習体験</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">「どこが違ったのか」を考える</div>
+                        <div class="step-description">「もっと具体的に聞けばよかった」など、自分なりに分析してみる</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">少し変えて再チャレンジ</div>
+                        <div class="step-description">質問の仕方を少し変えて、また試してみる</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">うまくいったパターンを覚える</div>
+                        <div class="step-description">「こう聞くといい答えが返ってくる」をメモしておく</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="training-tip">
+                <h4>練習方法</h4>
+                <p>1日1回、何でもいいのでChatGPTに質問してみましょう。「今日の晩ごはん何がいい？」「この服装どう思う？」など、友達に聞くような気軽な質問から始めるのがおすすめです。</p>
+            </div>
+        </div>
+
+        <div class="stage stage-2">
+            <div class="stage-header">
+                <div class="stage-icon">🧠</div>
+                <div>
+                    <div class="stage-title">第2段階：思考力</div>
+                    <div class="stage-subtitle">友達に相談するとき、まず状況を整理するよね</div>
+                </div>
+            </div>
+
+            <div class="why-section">
+                <h4>なぜこの力が必要なの？</h4>
+                <p>友達に「恋愛の相談があるの」と言われても、「具体的にどんなこと？」って聞き返しますよね。ChatGPTも同じで、こちらの状況や目的が整理されていないと、的確なアドバイスができません。自分の頭の中を整理してから質問することで、欲しい答えに近づけます。</p>
+            </div>
+
+            <div class="daily-example">
+                <h4>日常の例：美容師さんへのオーダー</h4>
+                <p>「いい感じにしてください」では伝わらないので、「肩につくくらいのボブで、前髪は眉上、色は少し明るめで」と具体的に伝える。そのために、まず「どんなスタイルにしたいか」「どんな印象になりたいか」を自分の中で整理する必要があります。</p>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">「やりたいこと」をはっきりさせる</div>
+                        <div class="step-description">「なんとなく困っている」から「〇〇について教えて欲しい」に変換</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">「今の状況」を把握する</div>
+                        <div class="step-description">「全然分からない」のか「ある程度知っているけど迷っている」のか</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">「何が足りないか」を考える</div>
+                        <div class="step-description">知識なのか、アイデアなのか、背中を押してもらいたいのか</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">「どんな答えが欲しいか」を想像する</div>
+                        <div class="step-description">箇条書きがいいのか、詳しい説明がいいのか、例が欲しいのか</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="training-tip">
+                <h4>練習方法</h4>
+                <p>ChatGPTに質問する前に、「なぜこれを聞きたいの？」「どんな答えだったら役に立つかな？」を30秒考えてみましょう。メモ帳に書き出すのも効果的です。</p>
+            </div>
+        </div>
+
+        <div class="stage stage-3">
+            <div class="stage-header">
+                <div class="stage-icon">💬</div>
+                <div>
+                    <div class="stage-title">第3段階：言語化力</div>
+                    <div class="stage-subtitle">お店での注文のように、具体的に伝えよう</div>
+                </div>
+            </div>
+
+            <div class="why-section">
+                <h4>なぜこの力が必要なの？</h4>
+                <p>ChatGPTは心を読むことができません。あなたが「言葉にした内容」だけが伝わります。レストランで「美味しいもの」と注文しても困りますよね。「スパイシーなカレー、中辛で、ナンも一緒に」と具体的に言えば、期待通りの料理が出てきます。</p>
+            </div>
+
+            <div class="daily-example">
+                <h4>日常の例：友達への頼みごと</h4>
+                <p>「今度よろしく」ではなく、「来週の土曜日の午後、原宿で買い物に付き合ってもらえる？可愛いワンピースを探していて、あなたのセンスを参考にしたいの」と具体的に伝える。これで相手も状況を理解して、適切に協力できます。</p>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">「いい感じで」から卒業する</div>
+                        <div class="step-description">抽象的な表現ではなく、できるだけ具体的な言葉を使う</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">「背景情報」を添える</div>
+                        <div class="step-description">「なぜその質問をするのか」の理由も一緒に伝える</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">「欲しい形式」を指定する</div>
+                        <div class="step-description">「3つのポイントで」「例を交えて」「初心者向けに」など</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">「優先順位」を伝える</div>
+                        <div class="step-description">「特に〇〇について詳しく」「簡潔に」など、何を重視するか</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="training-tip">
+                <h4>練習方法</h4>
+                <p>質問を書いた後、「この文章を読んだ友達は、私が何を求めているか分かるかな？」と客観的にチェックしてみましょう。分からないところがあれば、もう少し具体的に書き直してみてください。</p>
+            </div>
+        </div>
+
+        <div class="integration-section">
+            <h2>🎯 3つの力が合わさると...</h2>
+            <div class="integration-flow">
+                <div class="flow-item">
+                    <strong>試行錯誤力</strong><br>
+                    気軽に質問してみる
+                </div>
+                <div class="arrow">→</div>
+                <div class="flow-item">
+                    <strong>思考力</strong><br>
+                    目的と状況を整理
+                </div>
+                <div class="arrow">→</div>
+                <div class="flow-item">
+                    <strong>言語化力</strong><br>
+                    具体的に伝える
+                </div>
+                <div class="arrow">→</div>
+                <div class="flow-item">
+                    <strong>🎁 期待通りの答え</strong><br>
+                    役に立つ回答を取得
+                </div>
+            </div>
+        </div>
+
+        <div class="final-message">
+            <h3>✨ 大切なのは完璧を目指さないこと</h3>
+            <p>この3つの力は、一朝一夕で身につくものではありません。でも、友達との会話や買い物での接客など、普段のコミュニケーションと本質的には同じです。「失敗しても大丈夫」の気持ちで、楽しみながら練習していきましょう。ChatGPTは、あなたの学習と成長を応援してくれる心強いパートナーになってくれますよ。</p>
+        </div>
+    </div>
+</body>
+</html>
